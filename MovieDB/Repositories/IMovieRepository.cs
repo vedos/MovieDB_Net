@@ -1,5 +1,7 @@
 ﻿using MovieDB.Models;
+using MovieDB.Models.Out;
 using System.Collections.Generic;
+using X.PagedList;
 
 namespace MovieDB.Repositories
 {
@@ -7,8 +9,8 @@ namespace MovieDB.Repositories
     {
         public IEnumerable<Movie>GetAllMovies();
 
-        public IEnumerable<Movie> GetTopRatedMovies(string search, string take);
+        public IPagedList<MovieOut> GetTopRatedMovies(string search, int take, int? page);
 
-        public IEnumerable<Movie> GetTopRatedTVShows(string search, string take);
+        public IPagedList<MovieOut> GetTopRatedTVShows(string search, int take, int? page);
     }
 }

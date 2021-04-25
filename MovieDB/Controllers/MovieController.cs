@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieDB.Models;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using MovieDB.Models.Out;
 using MovieDB.Repositories;
 using System.Collections.Generic;
+using X.PagedList;
 
 namespace MovieDB.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class MovieController : ControllerBase
@@ -17,11 +20,9 @@ namespace MovieDB.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Movie> Get()
-        {         
-            return _moviesRepository.GetAllMovies();
+        public IPagedList<MovieOut> Get(string search,int take, int page)
+        {
+            return _moviesRepository.GetTopRatedMovies(search ?? "", take == 0 ? 10 : take, page == 0 ? 1 : page); 
         }
-
-
     }
 }

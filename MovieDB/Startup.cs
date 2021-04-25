@@ -8,7 +8,8 @@ using MovieDB.Repositories;
 namespace MovieDB
 {
     public class Startup
-    {       
+    {
+        readonly string AllowSpecificOrigins = "_AllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -24,6 +25,15 @@ namespace MovieDB
 
             services.AddDbContext<MovieContext>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200");
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +43,8 @@ namespace MovieDB
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(AllowSpecificOrigins);
 
             app.UseHttpsRedirection();
 
