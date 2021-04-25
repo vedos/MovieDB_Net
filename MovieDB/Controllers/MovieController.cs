@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieDB.Models.Out;
 using MovieDB.Repositories;
-using System.Collections.Generic;
 using X.PagedList;
 
 namespace MovieDB.Controllers

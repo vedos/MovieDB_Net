@@ -25,6 +25,7 @@ namespace MovieDB
 
             services.AddDbContext<MovieContext>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
 
             services.AddCors(options =>
             {
