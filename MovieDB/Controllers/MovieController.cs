@@ -16,7 +16,6 @@ namespace MovieDB.Controllers
             _moviesRepository = movieRepository;
         }
 
-
         [HttpGet]
         public IEnumerable<Movie> Get()
         {         
