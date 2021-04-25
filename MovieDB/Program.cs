@@ -15,6 +15,7 @@ namespace MovieDB
             using (var scope = host.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<MovieContext>();
+                DataSeeder.SeedCategories(dbContext);
                 DataSeeder.SeedMovies(dbContext);
             }
 
